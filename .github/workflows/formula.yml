@@ -1,0 +1,42 @@
+name: Formula CI
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: formula-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  formula:
+    name: Audit and test formula
+    runs-on: macos-15
+    timeout-minutes: 30
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v4
+
+      - name: Register checkout as a temporary tap
+        run: brew tap --custom-remote ci/tap "$GITHUB_WORKSPACE"
+
+      - name: Audit formula
+        run: brew audit --strict --online ci/tap/simtop
+
+      - name: Install formula from checkout
+        run: brew install --build-from-source ci/tap/simtop
+
+      - name: Run formula test
+        run: brew test ci/tap/simtop
+
+      - name: Smoke-test executable
+        run: "$(brew --prefix)/bin/simtop --version"
