@@ -24,7 +24,7 @@ jobs:
 
     steps:
       - name: Check out tap
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Register checkout as a temporary tap
         run: brew tap --custom-remote ci/tap "$GITHUB_WORKSPACE"
