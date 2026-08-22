@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "repository": "noahlin34/homebrew-tap",
+  "generatedFrom": "4d02ed914ac5188c06a4f29390ece50eb1ecb13d",
+  "packages": [
+    {
+      "name": "simtop",
+      "type": "formula",
+      "description": "High-performance iOS Simulator management TUI and automation CLI",
+      "version": "0.1.0",
+      "homepage": "https://github.com/noahlin34/simtop",
+      "license": "MIT",
+      "install": "brew install noahlin34/tap/simtop",
+      "source": "https://github.com/noahlin34/homebrew-tap/blob/main/Formula/simtop.rb"
+    }
+  ]
+}

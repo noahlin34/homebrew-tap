@@ -1,0 +1,59 @@
+name: Generate package manifest
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Formula/**"
+      - "Casks/**"
+      - ".github/scripts/generate-package-manifest.py"
+      - ".github/workflows/package-manifest.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: package-manifest-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    name: Generate packages.json
+    runs-on: macos-15
+    timeout-minutes: 10
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+      HOMEBREW_NO_ENV_HINTS: "1"
+      TAP_NAME: noahlin34/tap
+
+    steps:
+      - name: Check out tap
+        uses: actions/checkout@v5
+
+      - name: Register checkout as a tap
+        run: brew tap --custom-remote "$TAP_NAME" "$GITHUB_WORKSPACE"
+
+      - name: Generate package manifest
+        run: >-
+          python3 .github/scripts/generate-package-manifest.py
+          --tap "$TAP_NAME"
+          --repository "$GITHUB_REPOSITORY"
+          --branch "$GITHUB_REF_NAME"
+          --revision "$GITHUB_SHA"
+          --output packages.json
+
+      - name: Commit manifest
+        run: |
+          git add packages.json
+          if git diff --cached --quiet -- packages.json; then
+            echo "Package manifest is unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: update package manifest"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
