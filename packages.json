@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "repository": "noahlin34/homebrew-tap",
-  "generatedFrom": "3410fb2d571472a9940af2fae1071e4f7a911f53",
+  "generatedFrom": "7e26f7b2aa2bcf36ac3b9090884a63ffa9431818",
   "packages": [
     {
       "name": "simtop",
@@ -10,6 +10,7 @@
       "version": "0.1.0",
       "homepage": "https://github.com/noahlin34/simtop",
       "license": "MIT",
+      "caveats": "simtop requires macOS 15 or newer with Xcode 16 (CoreSimulator).\n",
       "install": "brew install noahlin34/tap/simtop",
       "source": "https://github.com/noahlin34/homebrew-tap/blob/main/Formula/simtop.rb"
     }
