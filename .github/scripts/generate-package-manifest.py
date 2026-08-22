@@ -64,6 +64,7 @@ def normalize_package(
         "version": version,
         "homepage": item.get("homepage"),
         "license": item.get("license"),
+        "caveats": item.get("caveats"),
         "install": install,
     }
 
