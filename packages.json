@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "repository": "noahlin34/homebrew-tap",
-  "generatedFrom": "7e26f7b2aa2bcf36ac3b9090884a63ffa9431818",
+  "generatedFrom": "65b6f3ed3fd4fd62e9f53add3cc380c61dc312e1",
   "packages": [
     {
       "name": "simtop",
       "type": "formula",
       "description": "High-performance iOS Simulator management TUI and automation CLI",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "homepage": "https://github.com/noahlin34/simtop",
       "license": "MIT",
       "caveats": "simtop requires macOS 15 or newer with Xcode 16 (CoreSimulator).\n",
