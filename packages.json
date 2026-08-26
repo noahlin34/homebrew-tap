@@ -1,8 +1,18 @@
 {
   "schemaVersion": 1,
   "repository": "noahlin34/homebrew-tap",
-  "generatedFrom": "65b6f3ed3fd4fd62e9f53add3cc380c61dc312e1",
+  "generatedFrom": "5d3900626307b2282d08171df258eef6b5a5699a",
   "packages": [
+    {
+      "name": "ports",
+      "type": "formula",
+      "description": "Inspect and manage listening ports and network connections",
+      "version": "0.1.0",
+      "homepage": "https://github.com/noahlin34/ports",
+      "license": "MIT",
+      "install": "brew install noahlin34/tap/ports",
+      "source": "https://github.com/noahlin34/homebrew-tap/blob/main/Formula/ports.rb"
+    },
     {
       "name": "simtop",
       "type": "formula",
